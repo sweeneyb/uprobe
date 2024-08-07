@@ -10,6 +10,12 @@ go build main.go
 clang -target bpf -O2 -g -o tracker.o -c bpf.c
 ```
 
+Check that the main.Greet symbol exists and isn't inlined:
+```
+$ nm main|grep Greet
+0000000000493520 T main.Greet
+```
+
 In one terminal, run:
 `go run -exec sudo bpf.go`
 
